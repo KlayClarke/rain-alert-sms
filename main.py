@@ -17,13 +17,13 @@ response.raise_for_status()
 data = response.json()
 hourly_data = data['hourly']
 
+weather_slice = hourly_data[:12]
+
 half_day_hourly_condition = []
 
-for data in hourly_data:
+for data in weather_slice:
     half_day_hourly_condition.append(data['weather'][0]['id'])
     if data['weather'][0]['id'] < 700:
         print('Bring an umbrella')
-    if len(half_day_hourly_condition) == 12:
-        break
 
 print(half_day_hourly_condition)
