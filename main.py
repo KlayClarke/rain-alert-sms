@@ -30,19 +30,15 @@ half_day_hourly_condition = []
 from_number = None
 to_number = None
 
-will_rain = False
-
 for data in weather_slice:
     half_day_hourly_condition.append(data['weather'][0]['id'])
     if data['weather'][0]['id'] < 700:
-        will_rain = True
+        client = Client(account_sid, auth_token)
+        message = client.messages \
+            .create(
+            body="It's going to rain today. Remember to bring an umbrella!",
+            from_=f'{from_number}',
+            to=f'{to_number}'
+        )
+        print(message.status)
 
-if will_rain:
-    client = Client(account_sid, auth_token)
-    message = client.messages \
-        .create(
-        body="It's going to rain today. Remember to bring an umbrella!",
-        from_=f'{from_number}',
-        to=f'{to_number}'
-    )
-    print(message.status)
