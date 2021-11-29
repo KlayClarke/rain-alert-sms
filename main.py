@@ -15,4 +15,15 @@ parameters = {
 response = requests.get(url='https://api.openweathermap.org/data/2.5/onecall', params=parameters)
 response.raise_for_status()
 data = response.json()
-print(data)
+hourly_data = data['hourly']
+
+half_day_hourly_condition = []
+
+for data in hourly_data:
+    half_day_hourly_condition.append(data['weather'][0]['id'])
+    if data['weather'][0]['id'] < 700:
+        print('Bring an umbrella')
+    if len(half_day_hourly_condition) == 12:
+        break
+
+print(half_day_hourly_condition)
