@@ -5,10 +5,9 @@ from twilio.http.http_client import TwilioHttpClient
 
 # Find your Account SID and Auth Token at twilio.com/console
 # and set the environment variables. See http://twil.io/secure
-account_sid = 'AC6441500d5adc9b8a0efb709d2d0a4c38'
-auth_token = 'bed7adec29e116248d5f51f6e5119ca7'
-
-api_key = 'a5562bcf068078abc0381db8dfc12bd6'
+account_sid = os.environ.get('ACCOUNT_SID')
+auth_token = os.environ.get('AUTH_TOKEN')
+api_key = os.environ.get('OWM_API_KEY')
 
 latitude = 42.3601
 longitude = 71.0589
